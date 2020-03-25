@@ -1,8 +1,9 @@
 -module(htserv).
-
+-include_lib("inets/include/httpd.hrl").
 -export([start/0, do/1]).
 
-do(_) -> {proceed, [{response, {200, "<html><body>hi</body></html>"}}]}.
+do(#mod{request_uri=R}) -> 
+	{proceed, [{response, {200, R}}]}.
 
 go() ->
 	go().
